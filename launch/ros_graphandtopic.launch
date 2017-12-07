@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+<node pkg="rqt_topic" name="rqt_topic" type="rqt_topic"/>
+<node pkg="rqt_graph" name="rqt_graph" type="rqt_graph"/>
+</launch>

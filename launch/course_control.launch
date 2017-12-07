@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<launch>
+
+<param name="use_sim_time" value="true" />
+
+<node pkg="kingfisher_control" type="pid_control.py" name="pid_control" output="screen">
+  <param name="yawKp" value="0.2" type="double"/>
+  <param name="yawKi" value="0.0" type="double"/>
+  <param name="yawKd" value="0.0" type="double"/>
+
+  <param name="velKp" value="0.7" type="double"/>
+  <param name="velKi" value="0.3" type="double"/>
+  <param name="velKd" value="0.0" type="double"/>
+
+  <param name="start_engaged" value="true" type="bool"/>
+  <param name="yaw_cntrl" value="true" type="bool"/>
+  <param name="vel_cntrl" value="true" type="bool"/>
+
+  <remap from="odometry/nav" to="nav_odom" />
+
+</node>
+	
+<!-- Joystick -->
+<node pkg="joy" type="joy_node" name="joy">
+  <param name="dev" value="/dev/input/js0"/>
+  <!--<param name="autorepeat_rate" type="double" value="10.0" />  -->
+  <param name="autorepeat_rate" value="0"/>
+</node>
+
+<!-- Joystick Teleop -->
+<rosparam file="$(find kingfisher_utils)/config/kingfisher_joy_course.yaml"
+	  command="load"/>	
+<node pkg="joy_teleop" type="joy_teleop.py" name="joy_teleop">
+  <remap from="cmd_vel" to="cmd_vel" />
+</node>
+
+<!-- Convert joystick twist to Course Cmd -->
+<node pkg="kingfisher_utils" type="twist2course.py" name="twist2course">
+</node>
+
+
+</launch>
