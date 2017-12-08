@@ -12,7 +12,10 @@
    version="1.2"
    id="svg2"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="rosgraph_coursecontrol.svg">
+   sodipodi:docname="rosgraph_coursecontrol.svg"
+   inkscape:export-filename="/home/bsb/catkin_ws/src/robotx_tutorial/images/rosgraph_coursecontrol_annote.png"
+   inkscape:export-xdpi="150"
+   inkscape:export-ydpi="150">
   <metadata
      id="metadata792">
     <rdf:RDF>
@@ -21,6 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Qt Svg Document</dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>

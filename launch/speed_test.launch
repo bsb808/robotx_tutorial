@@ -3,4 +3,5 @@
 <param name="use_sim_time" value="true" />
 <include file="$(find robotx_tutorial)/launch/lake_control.launch"></include>	
 <include file="$(find robotx_tutorial)/launch/course_control_better.launch"></include>
+
 </launch>

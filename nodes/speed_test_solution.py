@@ -22,11 +22,14 @@ time.sleep(1)
 # second is the yaw
 # and third is the amount of time to follow that course
 
-# FOR THE TUTORIAL - YOU SHOULD ONLY NEED TO MODIFY THIS VARIABLE!
-cmds = np.array([ [1.0, 0.0, 5.0],   # 1 m/s at 0 rad for 5 seconds
-                  [1.0, 1.57, 5.0],
-                  [1.0, 3.14, 5.0],
-                  [1.0, -1.57, 5.0] ])
+# This is a quick and dirty solution - I'm sure you will do better!
+cmds = np.array([ 
+        [0.0, 0.0, 5.0],   # alway start on same heading
+        [1.5, 3, 8.0],
+        [1.5, 3.2, 1.50],
+        [1.5, 1.5, 3.0] ,
+        [2.0, -0.2, 15.0 ] 
+        ])
                 
 # Setup publication - send course command to our PID control (/pid_control node)
 cmdPub = rospy.Publisher('/cmd_course',Course,queue_size=10);
@@ -43,7 +46,7 @@ for ii in range(cmds.shape[0]):
     cmdMsg.yaw=cmds[ii,1]
     dt = cmds[ii,2]
     print("Sending course %d of %d: speed=%.2f [m/s], yaw=%.2f [rad] for %.2f sec"%(ii,cmds.shape[0],cmdMsg.speed,cmdMsg.yaw,dt))
-    t0 = rospy.get_time()   # time for calc. elapsed time - uses simulation time
+    t0 = rospy.get_time()   # time for calc. elapsed time
     etime = 0.0
     while (dt >= etime):
         cmdPub.publish(cmdMsg)
@@ -52,8 +55,8 @@ for ii in range(cmds.shape[0]):
 
 # Send a last command to zero the speed and yaw
 cmdMsg.speed = 0.0
-cmdMsg.yaw = 0.0
-print("Zeroing the course")
+cmdMsg.yaw=0.0
+print("Zeroing speed")
 cmdPub.publish(cmdMsg)
 
 print("That's all folks...")
